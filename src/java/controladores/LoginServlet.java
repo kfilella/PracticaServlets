@@ -5,23 +5,25 @@
  */
 package controladores;
 
+import database.C_ConexionSQL;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.mysql.jdbc.PreparedStatement;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  *
  * @author estudiante.2016
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,15 +44,32 @@ public class LoginServlet extends HttpServlet {
         JsonObject object = new JsonObject();
         
         if (usuario.equals("admin") && password.equals("1234")){
-            object.addProperty("error", Boolean.FALSE);
-            object.addProperty("url", "home.jsp");
+            C_ConexionSQL connect=new C_ConexionSQL();
+            Connection con=connect.Conexion_SQL();
+            try {
+                PreparedStatement query = (PreparedStatement) con.prepareStatement("insert into practicaservlets.usuario (email,rol,nombre,password) values (?,?,?,?)");
+                query.setString(1, "email@email.com");
+                query.setString(2, "rol");
+                query.setString(3, "nombre");                        
+                query.setString(4, "password");
+                query.executeUpdate();
+                object.addProperty("error", Boolean.FALSE);
+                object.addProperty("url", "home.jsp");
+            }catch(SQLException e){
+                object.addProperty("error", Boolean.TRUE);
+                object.addProperty("errormsg", "Error SQL");  
+            }
+            
         }else{
             object.addProperty("error", Boolean.TRUE);
             object.addProperty("errormsg", "Usuario o contraseña incorrecta");            
         }
+
+ 
         PrintWriter out = response.getWriter();
         out.print(gson.toJson(object));
         out.flush();
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
