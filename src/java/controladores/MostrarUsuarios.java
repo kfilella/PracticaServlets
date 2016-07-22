@@ -6,23 +6,23 @@
 package controladores;
 
 import data_access.UsuarioAccess;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelos.Usuario;
+
 /**
  *
- * @author estudiante.2016
+ * @author Kevin
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "MostrarUsuarios", urlPatterns = {"/MostrarUsuarios"})
+public class MostrarUsuarios extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,27 +34,10 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String usuario = request.getParameter("usuario");
-        String password = request.getParameter("password");
-        ArrayList<Usuario> users = UsuarioAccess.getAll();
-        response.setContentType("application/json");
-        Gson gson = new Gson();
-        JsonObject object = new JsonObject();
-        
-        for (Usuario user : users){
-            if (usuario.equals(user.getUser()) && password.equals(user.getPassword())){
-                object.addProperty("error", Boolean.FALSE);
-                object.addProperty("url", "MostrarUsuarios");
-            }else{
-                object.addProperty("error", Boolean.TRUE);
-                object.addProperty("errormsg", "Usuario o contraseña incorrecta");            
-            }
-        }
- 
-        PrintWriter out = response.getWriter();
-        out.print(gson.toJson(object));
-        out.flush();
+        ArrayList<Usuario> usuarios = UsuarioAccess.getAll();
+        request.setAttribute("usuarios", usuarios);
+        RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+        rd.forward(request, response);
         
     }
 

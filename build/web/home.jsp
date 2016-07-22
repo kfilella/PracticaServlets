@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,30 +54,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Juan Perez</td>
-            <td>jperez@example.com</td>
-            <td>Desarrollador</td>
-            <td><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-            <td><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Rodrigo Castro</td>
-            <td>rcastro@example.com</td>
-            <td>Diseñador</td>
-            <td><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-            <td><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Jose Sanchez</td>
-            <td>jsanchez@example.com</td>
-            <td>Administrador</td>
-            <td><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-            <td><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
-          </tr>
+        <c:forEach items="${usuarios}" var="user">
+            <tr>
+                <th scope="row">${user.id}</th>
+                <td>${user.nombre}</td>
+                <td>${user.email}</td>
+                <td>${user.rol}</td>
+                <td><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+            </tr>
+        </c:forEach>
         </tbody>
       </table>
     </div>
@@ -127,7 +114,6 @@
                     { 'bSortable': false, 'aTargets': [ 4, 5 ] }
                  ]
             });
-            
         });
     </script>
   </body>

@@ -62,8 +62,8 @@ public class ProyectoAccess {
         }        
     }
     
-    public static List<Proyecto> getAll(){
-        List<Proyecto> proys = new LinkedList<>();
+    public static ArrayList<Proyecto> getAll(){
+        ArrayList<Proyecto> proys = new ArrayList<>();
         C_ConexionSQL connect = new C_ConexionSQL();
         Connection con = connect.Conexion_SQL();
         String sql = "select * from practicaservlets.proyecto";
