@@ -49,10 +49,11 @@ public class LoginServlet extends HttpServlet {
                     encontrado = 1;
                     object.addProperty("error", Boolean.FALSE);
                     object.addProperty("url", "home");
-                }else if(encontrado == 0){
-                    object.addProperty("error", Boolean.TRUE);
-                    object.addProperty("errormsg", "Usuario o contraseña incorrecta");            
                 }
+            }
+            if(encontrado == 0){
+                object.addProperty("error", Boolean.TRUE);
+                object.addProperty("errormsg", "Usuario o contraseña incorrecta");            
             }
         }else{
             object.addProperty("error", Boolean.TRUE);
