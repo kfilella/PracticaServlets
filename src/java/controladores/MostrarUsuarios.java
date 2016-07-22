@@ -20,7 +20,7 @@ import modelos.Usuario;
  *
  * @author Kevin
  */
-@WebServlet(name = "MostrarUsuarios", urlPatterns = {"/MostrarUsuarios"})
+@WebServlet(name = "MostrarUsuarios", urlPatterns = {"/home"})
 public class MostrarUsuarios extends HttpServlet {
 
     /**

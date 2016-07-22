@@ -48,7 +48,7 @@
             $("#loginForm").submit(function(e){
                 e.preventDefault();
                 
-                var url = "LoginServlet";
+                var url = "login";
                 $.ajax({
                    type: "POST",
                    url: url,
