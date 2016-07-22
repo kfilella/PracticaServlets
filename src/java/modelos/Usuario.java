@@ -11,14 +11,15 @@ package modelos;
  */
 public class Usuario {
     private int id;
-    private String nombre, email, password, rol;
+    private String nombre, email, password, rol, user;
 
-    public Usuario(int id, String nombre, String email, String password, String rol) {
+    public Usuario(int id, String email, String rol, String nombre, String password, String user) {
         this.id = id;
-        this.nombre = nombre;
         this.email = email;
-        this.password = password;
         this.rol = rol;
+        this.nombre = nombre;
+        this.password = password;
+        this.user = user;
     }
 
     public int getId() {
@@ -40,6 +41,10 @@ public class Usuario {
     public String getRol() {
         return rol;
     }
+    
+    public String getUser() {
+        return user;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -59,6 +64,10 @@ public class Usuario {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+    
+    public void setUser(String user) {
+        this.user = user;
     }
     
 }

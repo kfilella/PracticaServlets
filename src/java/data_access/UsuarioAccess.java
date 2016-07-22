@@ -21,30 +21,32 @@ public class UsuarioAccess {
     public void create(Usuario user){
         C_ConexionSQL connect = new C_ConexionSQL();
         Connection con = connect.Conexion_SQL();
-        String sql = "insert into practicaservlets.usuario (email,rol,nombre,password) values (?,?,?,?)";
+        String sql = "insert into practicaservlets.usuario (email,rol,nombre,password) values (?,?,?,?,?)";
         try {
             PreparedStatement query = (PreparedStatement) con.prepareStatement(sql);
             query.setString(1, user.getEmail());
             query.setString(2, user.getRol());
             query.setString(3, user.getNombre());                        
             query.setString(4, user.getPassword());
+            query.setString(5, user.getUser());
             query.executeUpdate();
         }catch (SQLException ex) {
             Logger.getLogger(UsuarioAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void edit(int id, String nombre, String email, String password, String rol){
+    public void edit(int id, String nombre, String email, String password, String rol, String user){
         C_ConexionSQL connect = new C_ConexionSQL();
         Connection con = connect.Conexion_SQL();
-        String sql = "update practicaservlets.usuario set email = ?, rol = ?, nombre = ?, password = ?" + " where id = ?";
+        String sql = "update practicaservlets.usuario set email = ?, rol = ?, nombre = ?, password = ?, user = ?" + " where id = ?";
         try {
             PreparedStatement query = (PreparedStatement) con.prepareStatement(sql);
             query.setString(1, email);
             query.setString(2, rol);
             query.setString(3, nombre);                        
             query.setString(4, password);
-            query.setInt(5, id);
+            query.setString(5, user);
+            query.setInt(6, id);
             query.executeUpdate();
         }catch (SQLException ex) {
             Logger.getLogger(UsuarioAccess.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,15 +66,15 @@ public class UsuarioAccess {
         }        
     }
     
-    public static List<Usuario> getAll(){
-        List<Usuario> users = new LinkedList<>();
+    public static ArrayList<Usuario> getAll(){
+        ArrayList<Usuario> users = new ArrayList<>();
         C_ConexionSQL connect = new C_ConexionSQL();
         Connection con = connect.Conexion_SQL();
         String sql = "select * from practicaservlets.usuario";
         try {
             ResultSet rs = con.prepareStatement(sql).executeQuery();
             while(rs.next()){
-                Usuario user = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Usuario user = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 users.add(user);
             }
         }catch (SQLException ex) {

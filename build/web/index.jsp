@@ -57,7 +57,7 @@
                        //console.log(data);
                        if (data.error){
                            $("#errorLogin").show();
-                           $("#errorLogin").text(data.errormsg)
+                           $("#errorLogin").text(data.errormsg);
                        }else{
                            window.location = data.url;
                        }

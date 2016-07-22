@@ -25,6 +25,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `proyecto`
 --
+create database practicaservlets;
+use practicaservlets;
 
 CREATE TABLE `proyecto` (
   `id` int(11) NOT NULL,
@@ -44,7 +46,8 @@ CREATE TABLE `usuario` (
   `email` varchar(100) NOT NULL,
   `rol` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `user` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -87,6 +90,8 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `proyecto`
   ADD CONSTRAINT `proyecto_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
+
+insert into usuario(email,rol,nombre,password,user) values ('test@test.com','rolTest','nombreTest','admin','root');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
