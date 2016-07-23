@@ -29,7 +29,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="home">Usuarios</a></li>
-            <li><a href="#">Proyectos</a></li>
+            <li><a href="proyectos">Proyectos</a></li>
             <li><a href="#">Dashboard</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -39,40 +39,41 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    <div class="container usuarios">
     <c:forEach items="${usuarios}" var="usuario">
         <div class="page-header text-center">
-	  <h2 style="color:white;">Editar Usuario - ${usuario.nombre}</h2>
+	  <h2>Editar Usuario - ${usuario.nombre}</h2>
           <div id="editError" class="alert alert-danger collapse" role="alert"></div>
 	</div>
         <div class="row-md-12">
           <form class="form-horizontal" role="form" id="editUsuarioForm">
                 <input type="hidden" id="editID" name="editID" value="${usuario.id}">
                 <div class="form-group">
-                  <label style="color:white;" class="control-label col-sm-2" for="name">User:</label> 
+                  <label class="control-label col-sm-2" for="name">User:</label> 
                   <div class="col-md-8">
                     <input type="text" class="form-control" id="editUser" name="editUser" value="${usuario.user}">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label style="color:white;" class="control-label col-sm-2" for="name">Password: </label>
+                  <label class="control-label col-sm-2" for="name">Password: </label>
                   <div class="col-md-8">
                     <input type="password" class="form-control" id="editPassword" name="editPassword" value="${usuario.password}">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label style="color:white;" class="control-label col-sm-2" for="name">Nombre: </label>
+                  <label class="control-label col-sm-2" for="name">Nombre: </label>
                   <div class="col-md-8">
                     <input type="text" class="form-control" id="editNombre" name="editNombre" value="${usuario.nombre}">
                   </div>
                 </div>
                 <div class="form-group">
-                    <label style="color:white;" class="control-label col-sm-2" for="name">Email: </label>
+                    <label class="control-label col-sm-2" for="name">Email: </label>
                     <div class="col-md-8">
                         <input type="email" class="form-control" id="editEmail" name="editEmail" value="${usuario.email}">
                     </div>
                 </div>
                 <div class="form-group">
-                  <label style="color:white;" class="control-label col-sm-2" for="name">Rol: </label>
+                  <label class="control-label col-sm-2" for="name">Rol: </label>
                   <div class="col-md-8">
                     <select class="form-control" id="editRol" name="editRol">
                       <option value="${usuario.rol}" selected="selected">${usuario.rol}</option>
@@ -91,6 +92,7 @@
           </form>
         </div>
     </c:forEach>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>

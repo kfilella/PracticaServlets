@@ -29,7 +29,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="home">Usuarios</a></li>
-            <li><a href="#">Proyectos</a></li>
+            <li><a href="proyectos">Proyectos</a></li>
             <li><a href="#">Dashboard</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -80,18 +80,23 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <label class="control-label" for="inputUser">User: </label>
                   <input type="text" class="form-control" id="inputUser" name="inputUser" placeholder="Usuario">
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="inputPassword">Password: </label>
                   <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña">
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="inputNombre">Nombre: </label>
                   <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
+                    <label class="control-label" for="inputEmail">Email: </label>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
                 </div>
                 <div class="form-group">
+                  <label class="control-label" for="selectRol">Rol: </label>
                   <select class="form-control" id="selectRol" name="selectRol">
                     <option value="Desarrollador">Desarrollador</option>
                     <option value="Diseñador">Diseñador</option>

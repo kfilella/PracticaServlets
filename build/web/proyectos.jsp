@@ -28,8 +28,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="home">Usuarios</a></li>
-            <li><a href="proyectos">Proyectos</a></li>
+            <li><a href="home">Usuarios</a></li>
+            <li class="active"><a href="proyectos">Proyectos</a></li>
             <li><a href="#">Dashboard</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -40,29 +40,33 @@
       </div>
     </nav>
     <div class="container usuarios">
-      <h2>Registro de Usuarios</h2>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalUsuarios">Agregar Usuario</button>
-      <table id="tablaUsuarios" class="table table-bordered table-striped">
+      <h2>Registro de Proyectos</h2>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProyectos">Agregar Proyecto</button>
+      <table id="tablaProyectos" class="table table-bordered table-striped">
         <thead>
           <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Email</th>
-            <th>Rol</th>
+            <th>Descripci&oacute;n</th>
+            <th>Encargado</th>
             <th>Editar</th>
             <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
         <% int index = 0;%>
-        <c:forEach items="${usuarios}" var="user">
+        <c:forEach items="${proyectos}" var="proy">
             <tr>
                 <th scope="row"><% out.print(++index); %></th>
-                <td>${user.nombre}</td>
-                <td>${user.email}</td>
-                <td>${user.rol}</td>
-                <td><a href="edit?id=${user.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                <td><a href="delete?id=${user.id}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                <td>${proy.nombre}</td>
+                <td>${proy.descripcion}</td>
+                <c:forEach items="${usuarios}" var="usuario">
+                <c:if test="${proy.id_usuario == usuario.id}">
+                <td>${usuario.nombre}</td>
+                </c:if>
+                </c:forEach>
+                <td><a href="editProy?id=${proy.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="deleteProy?id=${proy.id}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -70,40 +74,32 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalUsuarios" tabindex="-1" role="dialog">
+    <div class="modal fade" id="modalProyectos" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form id="crearUsuarioForm">
+          <form id="crearProyectoForm">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Ingresar Usuario</h4>
+              <h4 class="modal-title">Ingresar Proyecto</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="control-label" for="inputUser">User: </label>
-                  <input type="text" class="form-control" id="inputUser" name="inputUser" placeholder="Usuario">
+                    <label class="control-label" for="proyNombre">Nombre del Proyecto: </label>
+                  <input type="text" class="form-control" id="proyNombre" name="proyNombre" placeholder="Nombre">
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="inputPassword">Password: </label>
-                  <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña">
+                    <label class="control-label" for="proyDescripcion">Descripción: </label>
+                  <input type="text" class="form-control" id="proyDescripcion" name="proyDescripcion" placeholder="Descripción">
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="inputNombre">Nombre: </label>
-                  <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre">
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="inputEmail">Email: </label>
-                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <label class="control-label" for="selectRol">Rol: </label>
-                  <select class="form-control" id="selectRol" name="selectRol">
-                    <option value="Desarrollador">Desarrollador</option>
-                    <option value="Diseñador">Diseñador</option>
-                    <option value="Administrador">Administrador</option>
+                    <label class="control-label" for="selectUser">Encargado: </label>
+                  <select class="form-control" id="selectUser" name="selectUser">
+                    <c:forEach items="${usuarios}" var="usuario">
+                        <option value="${usuario.id}">${usuario.nombre}</option>
+                    </c:forEach>
                   </select>
                 </div>
-                <div id="errorUser" class="alert alert-danger collapse" role="alert"></div>
+                <div id="errorProy" class="alert alert-danger collapse" role="alert"></div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -119,7 +115,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#tablaUsuarios').DataTable({
+            $('#tablaProyectos').DataTable({
                 "language": {
                     url: 'i18n/dt-spanish.json'
                 },
@@ -127,18 +123,18 @@
                     { 'bSortable': false, 'aTargets': [ 4, 5 ] }
                  ]
             });
-            $("#crearUsuarioForm").submit(function(e){
+            $("#crearProyectoForm").submit(function(e){
                 e.preventDefault();
-                var url = "create";
+                var url = "createProy";
                 $.ajax({
                    type: "POST",
                    url: url,
-                   data: $("#crearUsuarioForm").serialize(), //envia todos los campos del formulario
+                   data: $("#crearProyectoForm").serialize(), //envia todos los campos del formulario
                    success: function(data){
                        //console.log(data);
                        if (data.error){
-                           $("#errorUser").show();
-                           $("#errorUser").text(data.errormsg);
+                           $("#errorProy").show();
+                           $("#errorProy").text(data.errormsg);
                        }else{
                            window.location = data.url;
                        }
