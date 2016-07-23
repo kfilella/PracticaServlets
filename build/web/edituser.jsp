@@ -42,6 +42,7 @@
     <c:forEach items="${usuarios}" var="usuario">
         <div class="page-header text-center">
 	  <h2 style="color:white;">Editar Usuario - ${usuario.nombre}</h2>
+          <div id="editError" class="alert alert-danger collapse" role="alert"></div>
 	</div>
         <div class="row-md-12">
           <form class="form-horizontal" role="form" id="editUsuarioForm">
@@ -49,25 +50,25 @@
                 <div class="form-group">
                   <label style="color:white;" class="control-label col-sm-2" for="name">User:</label> 
                   <div class="col-md-8">
-                    <input type="text" class="form-control" id="editUser" name="editUser" value="${usuario.user}" placeholder="${usuario.user}">
+                    <input type="text" class="form-control" id="editUser" name="editUser" value="${usuario.user}">
                   </div>
                 </div>
                 <div class="form-group">
                   <label style="color:white;" class="control-label col-sm-2" for="name">Password: </label>
                   <div class="col-md-8">
-                    <input type="password" class="form-control" id="editPassword" name="editPassword" value="${usuario.password}" placeholder="${usuario.password}">
+                    <input type="password" class="form-control" id="editPassword" name="editPassword" value="${usuario.password}">
                   </div>
                 </div>
                 <div class="form-group">
                   <label style="color:white;" class="control-label col-sm-2" for="name">Nombre: </label>
                   <div class="col-md-8">
-                    <input type="text" class="form-control" id="editNombre" name="editNombre" value="${usuario.nombre}" placeholder="${usuario.nombre}">
+                    <input type="text" class="form-control" id="editNombre" name="editNombre" value="${usuario.nombre}">
                   </div>
                 </div>
                 <div class="form-group">
                     <label style="color:white;" class="control-label col-sm-2" for="name">Email: </label>
                     <div class="col-md-8">
-                        <input type="email" class="form-control" id="editEmail" name="editEmail" value="${usuario.email}" placeholder="${usuario.email}">
+                        <input type="email" class="form-control" id="editEmail" name="editEmail" value="${usuario.email}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -81,15 +82,12 @@
                     </select>
                   </div>
                 </div>
-            <div class="col-md-8">
-            <div id="editError" class="alert alert-danger collapse" role="alert"></div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <a href="home" class="btn btn-default" role="button">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
             </div>
-                      <div class="form-group">
-		      <div class="col-sm-offset-2 col-sm-10">
-
-              <a href="home" class="btn btn-default" role="button">Cancelar</a>
-              <button type="submit" class="btn btn-primary">Guardar</button>
-                      </div></div>
           </form>
         </div>
     </c:forEach>
