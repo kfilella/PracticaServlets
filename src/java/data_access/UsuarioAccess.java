@@ -81,5 +81,22 @@ public class UsuarioAccess {
             Logger.getLogger(UsuarioAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
         return users;
-    }   
+    }  
+    
+    public static ArrayList<Usuario> getUsuarioById(int id){
+        ArrayList<Usuario> users = new ArrayList<>();
+        C_ConexionSQL connect = new C_ConexionSQL();
+        Connection con = connect.Conexion_SQL();
+        String sql = "select * from practicaservlets.usuario where id = " +id;
+        try {
+            ResultSet rs = con.prepareStatement(sql).executeQuery();
+            while(rs.next()){
+                Usuario user = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                users.add(user);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(UsuarioAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return users;
+    }
 }

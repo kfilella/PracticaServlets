@@ -28,13 +28,13 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Usuarios</a></li>
+            <li class="active"><a href="home">Usuarios</a></li>
             <li><a href="#">Proyectos</a></li>
             <li><a href="#">Dashboard</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#about"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="index.jsp">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -54,13 +54,14 @@
           </tr>
         </thead>
         <tbody>
+        <% int index = 0;%>
         <c:forEach items="${usuarios}" var="user">
             <tr>
-                <th scope="row">${user.id}</th>
+                <th scope="row"><% out.print(++index); %></th>
                 <td>${user.nombre}</td>
                 <td>${user.email}</td>
                 <td>${user.rol}</td>
-                <td><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="editforward?id=${user.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 <td><a href="delete?id=${user.id}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
             </tr>
         </c:forEach>
@@ -92,9 +93,9 @@
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="selectRol" name="selectRol">
-                    <option value="1">Desarrollador</option>
-                    <option value="2">Diseñador</option>
-                    <option value="3">Administrador</option>
+                    <option value="Desarrollador">Desarrollador</option>
+                    <option value="Diseñador">Diseñador</option>
+                    <option value="Administrador">Administrador</option>
                   </select>
                 </div>
                 <div id="errorUser" class="alert alert-danger collapse" role="alert"></div>
