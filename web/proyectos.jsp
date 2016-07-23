@@ -131,7 +131,6 @@
                    url: url,
                    data: $("#crearProyectoForm").serialize(), //envia todos los campos del formulario
                    success: function(data){
-                       //console.log(data);
                        if (data.error){
                            $("#errorProy").show();
                            $("#errorProy").text(data.errormsg);

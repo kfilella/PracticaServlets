@@ -19,7 +19,13 @@ public class Proyecto {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
-
+    
+    public Proyecto(int id_usuario, String nombre, String descripcion) {
+        this.id_usuario = id_usuario;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
