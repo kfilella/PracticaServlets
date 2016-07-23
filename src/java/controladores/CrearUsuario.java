@@ -5,6 +5,9 @@
  */
 package controladores;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import data_access.UsuarioAccess;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,13 +15,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import modelos.Usuario;
 /**
  *
- * @author estudiante.2016
+ * @author Kevin
  */
-@WebServlet(name = "UsuarioServlet", urlPatterns = {"/UsuarioServlet"})
-public class UsuarioServlet extends HttpServlet {
+@WebServlet(name = "CrearUsuario", urlPatterns = {"/create"})
+public class CrearUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,6 +34,30 @@ public class UsuarioServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String user = request.getParameter("inputUser");
+        String password = request.getParameter("inputPassword");
+        String nombre = request.getParameter("inputNombre");
+        String email = request.getParameter("inputEmail");
+        String rol = request.getParameter("selectRol");
+        
+        response.setContentType("application/json");
+        Gson gson = new Gson();
+        JsonObject object = new JsonObject();
+        
+        if(user.equals("") || password.equals("") || nombre.equals("") || email.equals("") || rol.equals("")){
+            object.addProperty("error", Boolean.TRUE);
+            object.addProperty("errormsg", "Todos los campos son obligatorios!"); 
+        } else{
+            Usuario usuario = new Usuario(email, rol, nombre, password, user);
+            UsuarioAccess ua = new UsuarioAccess();
+            ua.create(usuario);
+            object.addProperty("error", Boolean.FALSE);
+            object.addProperty("url", "home");
+        }
+        
+        PrintWriter out = response.getWriter();
+        out.print(gson.toJson(object));
+        out.flush();
         
     }
 

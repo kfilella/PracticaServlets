@@ -21,7 +21,7 @@ public class UsuarioAccess {
     public void create(Usuario user){
         C_ConexionSQL connect = new C_ConexionSQL();
         Connection con = connect.Conexion_SQL();
-        String sql = "insert into practicaservlets.usuario (email,rol,nombre,password) values (?,?,?,?,?)";
+        String sql = "insert into practicaservlets.usuario (email,rol,nombre,password,user) values (?,?,?,?,?)";
         try {
             PreparedStatement query = (PreparedStatement) con.prepareStatement(sql);
             query.setString(1, user.getEmail());

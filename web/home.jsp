@@ -72,17 +72,23 @@
     <div class="modal fade" id="modalUsuarios" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form>
+          <form id="crearUsuarioForm">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title">Ingresar Usuario</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                  <input type="text" class="form-control" id="inputUser" name="inputUser" placeholder="Usuario">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Contraseña">
+                </div>
+                <div class="form-group">
                   <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" id="inputApellido" name="inputEmail" placeholder="Email">
+                  <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
                 </div>
                 <div class="form-group">
                   <select class="form-control" id="selectRol" name="selectRol">
@@ -91,6 +97,7 @@
                     <option value="3">Administrador</option>
                   </select>
                 </div>
+                <div id="errorUser" class="alert alert-danger collapse" role="alert"></div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -114,7 +121,26 @@
                     { 'bSortable': false, 'aTargets': [ 4, 5 ] }
                  ]
             });
+            $("#crearUsuarioForm").submit(function(e){
+                e.preventDefault();
+                var url = "create";
+                $.ajax({
+                   type: "POST",
+                   url: url,
+                   data: $("#crearUsuarioForm").serialize(), //envia todos los campos del formulario
+                   success: function(data){
+                       //console.log(data);
+                       if (data.error){
+                           $("#errorUser").show();
+                           $("#errorUser").text(data.errormsg);
+                       }else{
+                           window.location = data.url;
+                       }
+                   }
+                });
+            });
         });
+        
     </script>
   </body>
 </html>

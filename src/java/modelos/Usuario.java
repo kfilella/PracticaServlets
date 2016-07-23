@@ -21,6 +21,14 @@ public class Usuario {
         this.password = password;
         this.user = user;
     }
+    
+    public Usuario(String email, String rol, String nombre, String password, String user) {
+        this.email = email;
+        this.rol = rol;
+        this.nombre = nombre;
+        this.password = password;
+        this.user = user;
+    }
 
     public int getId() {
         return id;
