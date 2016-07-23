@@ -21,7 +21,7 @@ import modelos.Usuario;
  *
  * @author Kevin
  */
-@WebServlet(name = "ForwardEditUsuario", urlPatterns = {"/editforward"})
+@WebServlet(name = "ForwardEditUsuario", urlPatterns = {"/edit"})
 public class ForwardEditUsuario extends HttpServlet {
 
     /**

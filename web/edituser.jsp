@@ -98,7 +98,7 @@
         $(document).ready(function() {
             $("#editUsuarioForm").submit(function(e){
                 e.preventDefault();
-                var url = "edit";
+                var url = "edituser";
                 $.ajax({
                    type: "POST",
                    url: url,

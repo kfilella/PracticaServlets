@@ -61,7 +61,7 @@
                 <td>${user.nombre}</td>
                 <td>${user.email}</td>
                 <td>${user.rol}</td>
-                <td><a href="editforward?id=${user.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="edit?id=${user.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                 <td><a href="delete?id=${user.id}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
             </tr>
         </c:forEach>
