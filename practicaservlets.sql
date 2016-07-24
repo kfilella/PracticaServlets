@@ -93,12 +93,15 @@ ALTER TABLE `proyecto`
   ADD CONSTRAINT `proyecto_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
 
 insert into usuario(email,rol,nombre,password,user) values ('test@test.com','rolTest','nombreTest','admin','root');
-insert into usuario(email,rol,nombre,password,user) values ('test@test.com1','rolTest1','nombreTest1','admin1','root1');
 insert into usuario(email,rol,nombre,password,user) values ('test@test.com2','rolTest2','nombreTest2','admin2','root2');
 insert into usuario(email,rol,nombre,password,user) values ('test@test.com3','rolTest3','nombreTest3','admin3','root3');
 insert into usuario(email,rol,nombre,password,user) values ('test@test.com4','rolTest4','nombreTest4','admin4','root4');
 insert into usuario(email,rol,nombre,password,user) values ('test@test.com5','rolTest5','nombreTest5','admin5','root5');
-
+insert into proyecto(id_usuario,nombre,descripcion) values (1,'nombre1','descripcion1');
+insert into proyecto(id_usuario,nombre,descripcion) values (2,'nombre2','descripcion2');
+insert into proyecto(id_usuario,nombre,descripcion) values (3,'nombre3','descripcion3');
+insert into proyecto(id_usuario,nombre,descripcion) values (4,'nombre4','descripcion4');
+insert into proyecto(id_usuario,nombre,descripcion) values (5,'nombre5','descripcion5');
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
