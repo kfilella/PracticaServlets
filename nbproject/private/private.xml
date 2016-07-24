@@ -3,13 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/ForwardEditUsuario.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/EditarProyecto.java</file>
             <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/modelos/Proyecto.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/web/index.jsp</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/CrearUsuario.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/BorrarUsuario.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/BorrarProyecto.java</file>
             <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/data_access/UsuarioAccess.java</file>
-            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/data_access/ProyectoAccess.java</file>
-            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/UsuarioServlet.java</file>
-            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/modelos/Usuario.java</file>
-            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/database/C_ConexionSQL.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/ForwardEditProy.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/CrearProyecto.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/web/proyectos.jsp</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/web/editproy.jsp</file>
             <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/LoginServlet.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/database/C_ConexionSQL.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/MostrarUsuarios.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/EditarUsuario.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/data_access/ProyectoAccess.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/web/edituser.jsp</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/web/home.jsp</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/controladores/MostrarProyectos.java</file>
+            <file>file:/C:/Users/Kevin/workspace/PracticaServlets/src/java/modelos/Usuario.java</file>
         </group>
     </open-files>
 </project-private>

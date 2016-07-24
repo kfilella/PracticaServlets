@@ -5,14 +5,17 @@
  */
 package controladores;
 
+import data_access.ProyectoAccess;
 import data_access.UsuarioAccess;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelos.Proyecto;
 
 /**
  *
@@ -34,6 +37,15 @@ public class BorrarUsuario extends HttpServlet {
             throws ServletException, IOException {
         String idUser = request.getParameter("id");
         int id = Integer.parseInt(idUser);
+        ArrayList<Proyecto> proyectos = ProyectoAccess.getAll();
+        ProyectoAccess pa = new ProyectoAccess();
+        
+        for (Proyecto p : proyectos){
+            if (p.getId_usuario() == id){
+                pa.delete(p.getId());
+            }
+        }
+        
         UsuarioAccess ua = new UsuarioAccess();
         ua.delete(id);
         response.sendRedirect("home");
