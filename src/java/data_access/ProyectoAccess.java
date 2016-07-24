@@ -78,4 +78,22 @@ public class ProyectoAccess {
         }
         return proys;
     }   
+    
+    public static ArrayList<Proyecto> getProyectoById(int id){
+        ArrayList<Proyecto> proyectos = new ArrayList<>();
+        C_ConexionSQL connect = new C_ConexionSQL();
+        Connection con = connect.Conexion_SQL();
+        String sql = "select * from practicaservlets.proyecto where id = " +id;
+        try {
+            ResultSet rs = con.prepareStatement(sql).executeQuery();
+            while(rs.next()){
+                Proyecto proy = new Proyecto(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4));
+                proyectos.add(proy);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(UsuarioAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(proyectos);
+        return proyectos;
+    }
 }

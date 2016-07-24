@@ -65,8 +65,8 @@
                 <td>${usuario.nombre}</td>
                 </c:if>
                 </c:forEach>
-                <td><a href="editProy?id=${proy.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                <td><a href="deleteProy?id=${proy.id}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                <td><a href="editp?id=${proy.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                <td><a href="deleteproy?id=${proy.id}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>

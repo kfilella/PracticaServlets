@@ -6,19 +6,25 @@
 package controladores;
 
 import data_access.ProyectoAccess;
+import data_access.UsuarioAccess;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelos.Proyecto;
+import modelos.Usuario;
 
 /**
  *
  * @author Kevin
  */
-@WebServlet(name = "BorrarProyecto", urlPatterns = {"/deleteproy"})
-public class BorrarProyecto extends HttpServlet {
+@WebServlet(name = "ForwardEditProy", urlPatterns = {"/editp"})
+public class ForwardEditProy extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,9 +39,12 @@ public class BorrarProyecto extends HttpServlet {
             throws ServletException, IOException {
         String idProy = request.getParameter("id");
         int id = Integer.parseInt(idProy);
-        ProyectoAccess pa = new ProyectoAccess();
-        pa.delete(id);
-        response.sendRedirect("proyectos");
+        ArrayList<Proyecto> proyectos = ProyectoAccess.getProyectoById(id);
+        ArrayList<Usuario> usuarios = UsuarioAccess.getAll();
+        request.setAttribute("proyectos", proyectos);
+        request.setAttribute("usuarios", usuarios);
+        RequestDispatcher rd = request.getRequestDispatcher("editproy.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
