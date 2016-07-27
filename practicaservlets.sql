@@ -51,6 +51,13 @@ CREATE TABLE `usuario` (
   `user` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `tarea` (
+  `id` int(11) NOT NULL,
+  `id_proyecto` int(11) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `estado` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Índices para tablas volcadas
 --
@@ -68,6 +75,8 @@ ALTER TABLE `proyecto`
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `tarea`
+  ADD PRIMARY KEY (`id`);
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
@@ -82,6 +91,9 @@ ALTER TABLE `proyecto`
 --
 ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tarea`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --
@@ -91,17 +103,43 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `proyecto`
   ADD CONSTRAINT `proyecto_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
+  
+ALTER TABLE `tarea`
+  ADD CONSTRAINT `tarea_ibfk_1` FOREIGN KEY (`id_proyecto`) REFERENCES `proyecto` (`id`);
 
-insert into usuario(email,rol,nombre,password,user) values ('test@test.com','rolTest','nombreTest','admin','root');
-insert into usuario(email,rol,nombre,password,user) values ('test@test.com2','rolTest2','nombreTest2','admin2','root2');
-insert into usuario(email,rol,nombre,password,user) values ('test@test.com3','rolTest3','nombreTest3','admin3','root3');
-insert into usuario(email,rol,nombre,password,user) values ('test@test.com4','rolTest4','nombreTest4','admin4','root4');
-insert into usuario(email,rol,nombre,password,user) values ('test@test.com5','rolTest5','nombreTest5','admin5','root5');
+insert into usuario(email,rol,nombre,password,user) values ('test@test.com','Administrador','nombreTest','admin','root');
+insert into usuario(email,rol,nombre,password,user) values ('test@test.com2','Diseñador','nombreTest2','admin2','root2');
+insert into usuario(email,rol,nombre,password,user) values ('test@test.com3','Administrador','nombreTest3','admin3','root3');
+insert into usuario(email,rol,nombre,password,user) values ('test@test.com4','Desarrollador','nombreTest4','admin4','root4');
+insert into usuario(email,rol,nombre,password,user) values ('test@test.com5','Desarrollador','nombreTest5','admin5','root5');
+
 insert into proyecto(id_usuario,nombre,descripcion) values (1,'nombre1','descripcion1');
 insert into proyecto(id_usuario,nombre,descripcion) values (2,'nombre2','descripcion2');
 insert into proyecto(id_usuario,nombre,descripcion) values (3,'nombre3','descripcion3');
 insert into proyecto(id_usuario,nombre,descripcion) values (4,'nombre4','descripcion4');
 insert into proyecto(id_usuario,nombre,descripcion) values (5,'nombre5','descripcion5');
+insert into proyecto(id_usuario,nombre,descripcion) values (5,'nombre6','descripcion6');
+insert into proyecto(id_usuario,nombre,descripcion) values (4,'nombre7','descripcion7');
+insert into proyecto(id_usuario,nombre,descripcion) values (3,'nombre8','descripcion8');
+insert into proyecto(id_usuario,nombre,descripcion) values (2,'nombre9','descripcion9');
+insert into proyecto(id_usuario,nombre,descripcion) values (1,'nombre10','descripcion10');
+
+insert into tarea(id_proyecto,titulo,estado) values (1,'tarea1','Inicial');
+insert into tarea(id_proyecto,titulo,estado) values (2,'tarea2','En desarrollo');
+insert into tarea(id_proyecto,titulo,estado) values (3,'tarea3','Terminado');
+insert into tarea(id_proyecto,titulo,estado) values (4,'tarea4','Inicial');
+insert into tarea(id_proyecto,titulo,estado) values (5,'tarea5','En desarrollo');
+insert into tarea(id_proyecto,titulo,estado) values (6,'tarea6','Inicial');
+insert into tarea(id_proyecto,titulo,estado) values (7,'tarea7','En desarrollo');
+insert into tarea(id_proyecto,titulo,estado) values (8,'tarea8','Terminado');
+insert into tarea(id_proyecto,titulo,estado) values (9,'tarea9','Inicial');
+insert into tarea(id_proyecto,titulo,estado) values (10,'tarea10','En desarrollo');
+insert into tarea(id_proyecto,titulo,estado) values (1,'tarea11','Terminado');
+insert into tarea(id_proyecto,titulo,estado) values (2,'tarea12','En desarrollo');
+insert into tarea(id_proyecto,titulo,estado) values (3,'tarea13','Inicial');
+insert into tarea(id_proyecto,titulo,estado) values (4,'tarea14','Terminado');
+insert into tarea(id_proyecto,titulo,estado) values (5,'tarea15','En desarrollo');
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

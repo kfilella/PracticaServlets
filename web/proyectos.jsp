@@ -30,7 +30,7 @@
           <ul class="nav navbar-nav">
             <li><a href="home">Usuarios</a></li>
             <li class="active"><a href="proyectos">Proyectos</a></li>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="dashboard">Dashboard</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#about"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
@@ -125,7 +125,7 @@
             });
             $("#crearProyectoForm").submit(function(e){
                 e.preventDefault();
-                var url = "createProy";
+                var url = "createp";
                 $.ajax({
                    type: "POST",
                    url: url,
