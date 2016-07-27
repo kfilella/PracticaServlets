@@ -53,7 +53,7 @@
             <th>Eliminar</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="usuariosTableBody">
         <% int index = 0;%>
         <c:forEach items="${usuarios}" var="user">
             <tr>
@@ -119,7 +119,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#tablaUsuarios').DataTable({
+            var tablaUsuarios = $('#tablaUsuarios').DataTable({
                 "language": {
                     url: 'i18n/dt-spanish.json'
                 },
@@ -127,6 +127,7 @@
                     { 'bSortable': false, 'aTargets': [ 4, 5 ] }
                  ]
             });
+
             $("#crearUsuarioForm").submit(function(e){
                 e.preventDefault();
                 var url = "create";
@@ -135,15 +136,28 @@
                    url: url,
                    data: $("#crearUsuarioForm").serialize(), //envia todos los campos del formulario
                    success: function(data){
-                       //console.log(data);
                        if (data.error){
                            $("#errorUser").show();
                            $("#errorUser").text(data.errormsg);
+                           $('#modalUsuarios').modal('show');
                        }else{
-                           window.location = data.url;
+                            tablaUsuarios.draw();
+                            var usuario = $.parseJSON(data.usuario);
+                            var nuevoUsuario = $("<tr>").append($("<th scope='row'>").text(data.lastnum))
+                                .append($("<td>").text(usuario.nombre))
+                                .append($("<td>").text(usuario.email))
+                                .append($("<td>").text(usuario.rol))
+                                .append($("<td><a href='edit?id="+data.id+"'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></td>"))
+                                .append($("<td><a href='delete?id="+data.id+"'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a></td>"));
+                            tablaUsuarios.row.add(nuevoUsuario).draw();
+                            $('#modalUsuarios').modal('hide');
                        }
+                       
                    }
+                   
                 });
+                
+                
             });
         });
         

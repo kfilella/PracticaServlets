@@ -18,10 +18,12 @@ import java.util.logging.Logger;
  */
 public class UsuarioAccess {
     
-    public void create(Usuario user){
+    public int create(Usuario user){
         C_ConexionSQL connect = new C_ConexionSQL();
         Connection con = connect.Conexion_SQL();
         String sql = "insert into practicaservlets.usuario (email,rol,nombre,password,user) values (?,?,?,?,?)";
+        String sql2 = "select LAST_INSERT_ID() from practicaservlets.usuario";
+        int id = 0;
         try {
             PreparedStatement query = (PreparedStatement) con.prepareStatement(sql);
             query.setString(1, user.getEmail());
@@ -32,7 +34,16 @@ public class UsuarioAccess {
             query.executeUpdate();
         }catch (SQLException ex) {
             Logger.getLogger(UsuarioAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        try {
+           ResultSet rs = con.prepareStatement(sql2).executeQuery();
+            while(rs.next()){
+                id = rs.getInt(1);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(UsuarioAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return id;
     }
 
     public void edit(int id, String nombre, String email, String password, String rol, String user){

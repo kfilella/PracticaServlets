@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import data_access.UsuarioAccess;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,9 +51,12 @@ public class CrearUsuario extends HttpServlet {
         } else{
             Usuario usuario = new Usuario(email, rol, nombre, password, user);
             UsuarioAccess ua = new UsuarioAccess();
-            ua.create(usuario);
+            int id = ua.create(usuario);
+            ArrayList<Usuario> usuarios = UsuarioAccess.getAll();
             object.addProperty("error", Boolean.FALSE);
-            object.addProperty("url", "home");
+            object.addProperty("usuario", gson.toJson(usuario));
+            object.addProperty("lastnum", usuarios.size());
+            object.addProperty("id", id);
         }
         
         PrintWriter out = response.getWriter();
