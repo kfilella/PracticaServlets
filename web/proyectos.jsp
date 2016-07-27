@@ -66,7 +66,7 @@
                 </c:if>
                 </c:forEach>
                 <td><a href="editp?id=${proy.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                <td><a href="deleteproy?id=${proy.id}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                <td><a href="deletep?id=${proy.id}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
             </tr>
         </c:forEach>
         </tbody>
@@ -143,8 +143,8 @@
                                 .append($("<td>").text(proyecto.nombre))
                                 .append($("<td>").text(proyecto.descripcion))
                                 .append($("<td>").text(usuario.nombre))
-                                .append($("<td><a href='edit?id="+data.id+"'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></td>"))
-                                .append($("<td><a href='delete?id="+data.id+"'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a></td>"));
+                                .append($("<td><a href='editp?id="+data.id+"'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></td>"))
+                                .append($("<td><a href='deletep?id="+data.id+"'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a></td>"));
                             tablaProyectos.row.add(nuevoProyecto).draw();
                             $('#modalProyectos').modal('hide');
                        }

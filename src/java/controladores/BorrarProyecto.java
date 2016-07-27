@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Kevin
  */
-@WebServlet(name = "BorrarProyecto", urlPatterns = {"/deleteproy"})
+@WebServlet(name = "BorrarProyecto", urlPatterns = {"/deletep"})
 public class BorrarProyecto extends HttpServlet {
 
     /**
