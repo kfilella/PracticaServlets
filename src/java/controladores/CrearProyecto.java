@@ -11,6 +11,7 @@ import data_access.ProyectoAccess;
 import data_access.UsuarioAccess;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,9 +54,14 @@ public class CrearProyecto extends HttpServlet {
         } else{
             Proyecto proy = new Proyecto(id_usuario, nombre, descripcion);
             ProyectoAccess pa = new ProyectoAccess();
-            pa.create(proy);
+            int id = pa.create(proy);
+            ArrayList<Proyecto> proyectos = ProyectoAccess.getAll();
+            ArrayList<Usuario> usuario = UsuarioAccess.getUsuarioById(id_usuario);
             object.addProperty("error", Boolean.FALSE);
-            object.addProperty("url", "proyectos");
+            object.addProperty("proyecto", gson.toJson(proy));
+            object.addProperty("usuario", gson.toJson(usuario.get(0)));
+            object.addProperty("lastnum", proyectos.size());
+            object.addProperty("id", id);
         }
         
         PrintWriter out = response.getWriter();

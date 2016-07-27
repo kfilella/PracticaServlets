@@ -115,7 +115,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/datatables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#tablaProyectos').DataTable({
+            var tablaProyectos = $('#tablaProyectos').DataTable({
                 "language": {
                     url: 'i18n/dt-spanish.json'
                 },
@@ -134,8 +134,19 @@
                        if (data.error){
                            $("#errorProy").show();
                            $("#errorProy").text(data.errormsg);
+                           $('#modalProyectos').modal('show');
                        }else{
-                           window.location = data.url;
+                            tablaProyectos.draw();
+                            var proyecto = $.parseJSON(data.proyecto);
+                            var usuario = $.parseJSON(data.usuario);
+                            var nuevoProyecto = $("<tr>").append($("<th scope='row'>").text(data.lastnum))
+                                .append($("<td>").text(proyecto.nombre))
+                                .append($("<td>").text(proyecto.descripcion))
+                                .append($("<td>").text(usuario.nombre))
+                                .append($("<td><a href='edit?id="+data.id+"'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a></td>"))
+                                .append($("<td><a href='delete?id="+data.id+"'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a></td>"));
+                            tablaProyectos.row.add(nuevoProyecto).draw();
+                            $('#modalProyectos').modal('hide');
                        }
                    }
                 });

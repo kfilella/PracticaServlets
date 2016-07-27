@@ -18,10 +18,12 @@ import java.util.logging.Logger;
  */
 public class ProyectoAccess {
     
-    public void create(Proyecto proy){
+    public int create(Proyecto proy){
         C_ConexionSQL connect = new C_ConexionSQL();
         Connection con = connect.Conexion_SQL();
         String sql = "insert into practicaservlets.proyecto (id_usuario,nombre,descripcion) values (?,?,?)";
+        String sql2 = "select LAST_INSERT_ID() from practicaservlets.proyecto";
+        int id = 0;
         try {
             PreparedStatement query = (PreparedStatement) con.prepareStatement(sql);
             query.setInt(1, proy.getId_usuario());
@@ -31,6 +33,15 @@ public class ProyectoAccess {
         }catch (SQLException ex) {
             Logger.getLogger(ProyectoAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+           ResultSet rs = con.prepareStatement(sql2).executeQuery();
+            while(rs.next()){
+                id = rs.getInt(1);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(UsuarioAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
     }
 
     public void edit(int id, int id_usuario, String nombre, String descripcion){
